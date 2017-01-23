@@ -69,7 +69,7 @@ def getArticleText(url):
     comment['credit'] = res['credit']
 
     #bot_text
-    bot_version = 'Version : 0.6a'
+    bot_version = 'Version : 1.0a'
     bot_changelog = 'https://www.reddit.com/r/anti_anti_adblock/comments/4ssi0u/change_log/'
     bot_function = '''Function : I post the article's text as a comment if the website is adblocker unfriendly.'''
     bot_config_text = 'I accept commands!'
