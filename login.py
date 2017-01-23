@@ -2,7 +2,7 @@ import praw
 
 try:
     import env
-except ModuleNotFoundError as e:
+except ImportError as e:
     print("env.py file not found")
     print("env.py contains keys needed to use reddit API.")
     print("praw is used, see here for more info : https://praw.readthedocs.io/en/latest/getting_started/authentication.html ")
