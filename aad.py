@@ -12,6 +12,10 @@ import subreddits
 reddit = login.redditInstance()
 
 activeSubredditList = subreddits.getActiveSubreddits()
+print("#################################################")
+print("active on the followin subreddits : ")
+pprint(activeSubredditList)
+print("#################################################")
 for subName in activeSubredditList:
     print("=================================================")
     print("=================================================")
