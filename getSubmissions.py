@@ -33,7 +33,7 @@ def getSubmissions(subName, reddit):
             userIsIgnored = users.isIgnored(submission.author.name)
 
             #check if the submission is already in the database
-            alreadyRecorded = isRecorded(submission.id)
+            alreadyRecorded = isRecorded(submission.id, subName)
 
             if inactiveOnDomain or userIsIgnored or alreadyRecorded:
                 infoText = "[INFO]This submission is marked as irrelevant : "
@@ -73,6 +73,6 @@ def newSubmissions(subreddit_name, reddit):
 
     return newSubmissions
 
-def isRecorded(id_value):
+def isRecorded(id_value, subName):
     db.connect(subName)
     return db.isSubmissionRecorded(id_value)
