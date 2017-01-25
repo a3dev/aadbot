@@ -1,2 +1,4 @@
 anti_anti_adblockbot.sh
 env.py
+database/*.sqlite
+__pycache__/

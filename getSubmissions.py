@@ -24,17 +24,31 @@ def getSubmissions(subName, reddit):
     #for submission in subreddit.stream.submissions():
     for submission in subreddit.new(limit = RETRIELVAL_LIMIT):
         if not submission.is_self:
-            isRelevant = True
-
             #check if the bot is active on the domain
             parsedURL = tldextract.extract(submission.url)
             domain = parsedURL.domain + '.' + parsedURL.suffix
-            isRelevant = isRelevant and domains.isActiveOnDomain(domain, subName)
+            inactiveOnDomain = not domains.isActiveOnDomain(domain, subName)
 
             #check if the bot ignores the user
-            isRelevant = isRelevant and not users.isIgnored(submission.author.name)
+            userIsIgnored = users.isIgnored(submission.author.name)
 
-            if not isRelevant:
+            #check if the submission is already in the database
+            alreadyRecorded = isRecorded(submission.id)
+
+            if inactiveOnDomain or userIsIgnored or alreadyRecorded:
+                infoText = "[INFO]This submission is marked as irrelevant : "
+                if inactiveOnDomain:
+                    infoText = infoText + "<inactiveOnDomain>"
+                if userIsIgnored:
+                    infoText = infoText + "<userIsIgnored>"
+                if alreadyRecorded:
+                    infoText = infoText + "<alreadyRecorded>"
+
+                infoText = infoText + " : "
+
+                print(infoText, submission.id)
+
+                #skip processing this submission
                 continue
 
             newSubmissions.append(
@@ -58,3 +72,8 @@ def newSubmissions(subreddit_name, reddit):
     newSubmissions = db.getNewSubmissions()
 
     return newSubmissions
+
+def isRecorded(id_value):
+    subName = 'india'
+    db.connect(subName)
+    return db.isSubmissionRecorded(id_value)

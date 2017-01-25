@@ -201,7 +201,7 @@ def getNewSubmissions():
         cursor = conn.cursor()
 
         query = "SELECT id FROM " + sub_log + " WHERE processed = ? AND failed = ?"
-        cursor.execute(query, ('0', '1'))
+        cursor.execute(query, (False, True))
 
         for row in cursor.fetchall():
             id_value, = row
@@ -236,7 +236,7 @@ def getNewCommentReplies(subName):
         cursor = conn.cursor()
 
         query = "SELECT id FROM " + cRep_log + " WHERE processed = ? AND failed = ?"
-        cursor.execute(query, ('0', '1'))
+        cursor.execute(query, (False, True))
 
         for row in cursor.fetchall():
             id_value, = row
@@ -271,7 +271,7 @@ def getNewPrivateMessages():
         cursor = conn.cursor()
 
         query = "SELECT id FROM " + pm_log + " WHERE processed = ? AND failed = ?"
-        cursor.execute(query, ('0', '1'))
+        cursor.execute(query, (False, True))
 
         for row in cursor.fetchall():
             id_value, = row
@@ -292,6 +292,23 @@ def getNewPrivateMessages():
                 )
 
     return newPrivateMessages
+
+def isSubmissionRecorded(id_value):
+    if db_path is None:
+        print("ERROR : DB : setDomains: ", 'db_path is None')
+        exit()
+
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+
+        query = "SELECT * FROM " + sub_table + " WHERE id = ?"
+        cursor.execute(query, (id_value,))
+
+        if len(cursor.fetchall()) > 0:
+            return True
+        else:
+            return False
+
 
 def setDomains(domainList):
     if db_path is None:
