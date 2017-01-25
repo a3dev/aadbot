@@ -74,6 +74,5 @@ def newSubmissions(subreddit_name, reddit):
     return newSubmissions
 
 def isRecorded(id_value):
-    subName = 'india'
     db.connect(subName)
     return db.isSubmissionRecorded(id_value)
