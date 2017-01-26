@@ -67,5 +67,4 @@ INSERT INTO domains (domain, blacklisted) VALUES
   ("financialexpress.com", 0);
 
 INSERT INTO subreddit_list (subName) VALUES
-  ("india")
   ("testsleep");
