@@ -70,10 +70,10 @@ def getArticleText(url):
 
     #bot_text
     bot_version = 'Version : 1.0a'
-    bot_changelog = 'https://www.reddit.com/r/anti_anti_adblock/comments/4ssi0u/change_log/'
+    bot_changelog = 'https://www.reddit.com/r/anti_anti_adblock/comments/5pr3ac/changelog/'
     bot_function = '''Function : I post the article's text as a comment if the website is adblocker unfriendly.'''
     bot_config_text = 'I accept commands!'
-    bot_config_ref = 'https://www.reddit.com/r/anti_anti_adblock/comments/4u2iwn/commands_accepted_by_the_bot/'
+    bot_config_ref = 'https://www.reddit.com/r/anti_anti_adblock/comments/5pr33h/10a_commands_accepted_by_the_bot/'
 
     bot_text = redditText.superscript(bot_version) + " ^| "
     bot_text += redditText.link(redditText.superscript('Changelog'), bot_changelog)
