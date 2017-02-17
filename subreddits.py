@@ -24,3 +24,7 @@ def getActiveSubreddits():
     activeSubredditList = db.getActiveSubreddits()
 
     return activeSubredditList
+
+def isPrivate(subName, reddit):
+    subreddit = reddit.subreddit('testsleep')
+    return subreddit.subreddit_type == 'private'

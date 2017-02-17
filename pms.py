@@ -61,7 +61,12 @@ def process(data, reddit):
                         pm.reply(replyText)
                         inbox.PMSucceded(id_value)
                     else:
-                        if subreddits.isAdded(subName):
+                        if subreddits.isPrivate(subName, reddit):
+                            replyText = rt.codeSnippet(subName) +  " is a private subreddit. The bot does not work on private subreddits for now."
+
+                            pm.reply(replyText)
+                            inbox.PMSucceded(id_value)
+                        elif subreddits.isAdded(subName):
                             replyText = rt.codeSnippet(subName) +  " has already been added. No further action required."
 
                             pm.reply(replyText)
